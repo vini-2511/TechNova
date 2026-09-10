@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TechNova | AI Identity & Document Authentication</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#020817;color:#edf6ff;line-height:1.55}
+nav{position:sticky;top:0;z-index:20;background:rgba(2,8,23,.96);backdrop-filter:blur(14px);border-bottom:1px solid #17314d;padding:17px 6%;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:28px;font-weight:800}.logo span{color:#1597ff}
+nav a{color:#a9bdd2;text-decoration:none;margin-left:20px;font-size:14px}
+.hero{padding:70px 7%;display:grid;grid-template-columns:1.15fr .85fr;gap:42px;align-items:center;background:radial-gradient(circle at 78% 30%,#073966,transparent 40%)}
+.badge{display:inline-block;padding:8px 16px;border:1px solid #147bd0;border-radius:30px;background:#082d50;color:#6cc7ff;font-size:13px;letter-spacing:1px;margin-bottom:22px}
+h1{font-size:clamp(42px,6vw,74px);line-height:1.02;margin-bottom:22px}h1 span{color:#1597ff}
+.hero p,.sub{color:#94aac1;font-size:18px}
+.btn{display:inline-block;border:0;background:#128cf2;color:#fff;padding:14px 22px;border-radius:12px;font-weight:700;cursor:pointer;text-decoration:none;margin-top:22px}
+.btn.secondary{background:#0b2138;border:1px solid #245579}
+.panel{background:#07182b;border:1px solid #174b75;border-radius:20px;padding:23px;box-shadow:0 18px 55px rgba(0,110,255,.12)}
+.panel-head{display:flex;justify-content:space-between;margin-bottom:15px}.online{color:#43e0a0}
+.status{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #15334e;font-size:14px}.green{color:#43e0a0}.yellow{color:#ffd166}
+section{padding:60px 7%}.title{font-size:35px;margin-bottom:8px}.sub{margin-bottom:25px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#07182b;border:1px solid #153752;border-radius:17px;padding:22px}.card p{color:#91a8c0;font-size:14px;margin-top:7px}
+.upload-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.drop{border:1px dashed #2676a9;border-radius:17px;padding:30px;text-align:center;background:#061526}
+input[type=file]{display:none}.file-label{display:inline-block;padding:13px 20px;background:#128cf2;border-radius:10px;cursor:pointer;font-weight:700}
+.preview{width:100%;max-height:360px;object-fit:contain;border-radius:12px;margin-top:18px;background:#000;display:none}
+textarea{width:100%;min-height:130px;margin-top:15px;background:#020b17;border:1px solid #21445f;border-radius:12px;color:#dcecff;padding:13px;resize:vertical}
+.metric{margin:15px 0}.metric-top{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}.bar{height:8px;background:#10283e;border-radius:10px;overflow:hidden}.fill{height:100%;width:0;background:#1597ff;transition:.5s}
+.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.camera{position:relative;background:#000;border-radius:16px;overflow:hidden;min-height:300px;border:1px solid #1a4566}.camera video{width:100%;min-height:300px;object-fit:cover}.camera canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.result{margin-top:16px;padding:16px;background:#061426;border:1px solid #1a4667;border-radius:13px}.risk{font-size:34px;font-weight:800;margin:8px 0}.risk.low{color:#43e0a0}.risk.medium{color:#ffd166}.risk.high{color:#ff6b6b}
+table{width:100%;border-collapse:collapse;margin-top:18px;font-size:14px}th,td{text-align:left;padding:12px;border-bottom:1px solid #17344c}th{color:#7ecbff}
+.small{font-size:12px;color:#7089a1;margin-top:12px}
+footer{text-align:center;padding:35px;color:#7089a1;border-top:1px solid #122b43}
+@media(max-width:820px){nav a{display:none}.hero,.upload-grid,.demo-grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.cards{grid-template-columns:1fr}section{padding:48px 5%}}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="logo">Tech<span>Nova</span></div>
+<div><a href="#document">Document</a><a href="#biometric">Biometric</a><a href="#report">Report</a></div>
+</nav>
+
+<header class="hero">
+<div>
+<div class="badge">SMART INDIA HACKATHON 2026 • SIH26188</div>
+<h1>AI-Powered <span>Identity</span> & Document Authentication</h1>
+<p>Intelligent border-security screening with document upload, OCR, MRZ validation, face detection, biometric readiness, tamper indicators and explainable risk assessment.</p>
+<a class="btn" href="#document">Launch AI Screening →</a>
+</div>
+<div class="panel">
+<div class="panel-head"><b>AI SCREENING CONSOLE</b><span class="online">● ONLINE</span></div>
+<div class="status"><span>Document AI</span><span class="green">READY</span></div>
+<div class="status"><span>OCR Engine</span><span class="green">READY</span></div>
+<div class="status"><span>MRZ Validation</span><span class="green">READY</span></div>
+<div class="status"><span>Face Detection</span><span class="green">READY</span></div>
+<div class="status"><span>Tamper Analysis</span><span class="yellow">DEMO</span></div>
+</div>
+</header>
+
+<section id="document">
+<h2 class="title">01 · Document AI Screening</h2>
+<p class="sub">Upload an identity document image and run OCR/MRZ checks.</p>
+<div class="upload-grid">
+<div class="drop">
+<label class="file-label" for="docFile">Choose Document Image</label>
+<input id="docFile" type="file" accept="image/*">
+<img id="preview" class="preview" alt="Document preview">
+<p class="small">Use a clear document image. Processing happens in the browser for this demo.</p>
+<button class="btn" id="ocrBtn" disabled>Run OCR & Analysis</button>
+</div>
+<div class="panel">
+<h3>Extracted Document Data</h3>
+<textarea id="ocrText" placeholder="OCR text will appear here..."></textarea>
+<div class="metric"><div class="metric-top"><span>OCR confidence</span><b id="ocrScore">0%</b></div><div class="bar"><div class="fill" id="ocrBar"></div></div></div>
+<div class="metric"><div class="metric-top"><span>MRZ validation</span><b id="mrzState">NOT CHECKED</b></div><div class="bar"><div class="fill" id="mrzBar"></div></div></div>
+<div class="metric"><div class="metric-top"><span>Tamper indicator</span><b id="tamperState">NOT CHECKED</b></div><div class="bar"><div class="fill" id="tamperBar"></div></div></div>
+</div>
+</div>
+</section>
+
+<section id="biometric">
+<h2 class="title">02 · Face Detection & Biometric Readiness</h2>
+<p class="sub">Use the camera to detect a face, check position and assess capture readiness.</p>
+<div class="demo-grid">
+<div class="camera"><video id="video" autoplay muted playsinline></video><canvas id="overlay"></canvas></div>
+<div class="panel">
+<h3>Live Biometric Analysis</h3>
+<div class="metric"><div class="metric-top"><span>Face detection</span><b id="faceState">WAITING</b></div><div class="bar"><div class="fill" id="faceBar"></div></div></div>
+<div class="metric"><div class="metric-top"><span>Face position</span><b id="position">—</b></div><div class="bar"><div class="fill" id="positionBar"></div></div></div>
+<div class="metric"><div class="metric-top"><span>Capture readiness</span><b id="ready">WAITING</b></div><div class="bar"><div class="fill" id="readyBar"></div></div></div>
+<button class="btn" id="cameraBtn">Enable Camera</button>
+<div class="result" id="cameraResult">Camera permission is required for live detection.</div>
+<p class="small">This demo detects a face but does not identify the person. Actual biometric matching requires a secure, consent-based backend and protected biometric templates.</p>
+</div>
+</div>
+</section>
+
+<section id="report">
+<h2 class="title">03 · Explainable Verification Report</h2>
+<p class="sub">A single dashboard for presenting the screening result.</p>
+<div class="panel">
+<div class="cards">
+<div class="card"><h3>Document</h3><p id="docReport">Waiting for document</p></div>
+<div class="card"><h3>Face</h3><p id="faceReport">Waiting for camera</p></div>
+<div class="card"><h3>Risk Assessment</h3><div id="riskValue" class="risk low">LOW</div><p id="riskReason">No risk indicators have been evaluated.</p></div>
+</div>
+<table>
+<tr><th>Module</th><th>Status</th><th>Explanation</th></tr>
+<tr><td>OCR</td><td id="t1">Pending</td><td>Text extraction from uploaded image.</td></tr>
+<tr><td>MRZ</td><td id="t2">Pending</td><td>Basic MRZ pattern/check-digit demonstration.</td></tr>
+<tr><td>Face Detection</td><td id="t3">Pending</td><td>Live face-location detection.</td></tr>
+<tr><td>Tamper Indicator</td><td id="t4">Pending</td><td>Simple demo heuristic; not forensic authentication.</td></tr>
+</table>
+</div>
+</section>
+
+<section>
+<h2 class="title">Workflow</h2>
+<p class="sub">Upload → OCR → MRZ → Face Detection → Quality Check → Risk Review → Report</p>
+<div class="cards">
+<div class="card"><h3>INPUT</h3><p>Identity document image and camera feed.</p></div>
+<div class="card"><h3>AI PROCESSING</h3><p>OCR, MRZ pattern validation, face detection and screening indicators.</p></div>
+<div class="card"><h3>OUTPUT</h3><p>Explainable status dashboard for human review.</p></div>
+</div>
+</section>
+
+<footer>TechNova • AI Identity & Document Authentication • SIH26188</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const file=$("docFile"),preview=$("preview"),ocrBtn=$("ocrBtn");
+
+file.addEventListener("change",()=>{
+ const f=file.files[0];
+ if(!f)return;
+ preview.src=URL.createObjectURL(f);
+ preview.style.display="block";
+ ocrBtn.disabled=false;
+ $("docReport").textContent="Document image loaded";
+});
+
+ocrBtn.addEventListener("click",async()=>{
+ const f=file.files[0]; if(!f)return;
+ ocrBtn.disabled=true; ocrBtn.textContent="Processing...";
+ $("ocrText").value="Running OCR...";
+ try{
+  const out=await Tesseract.recognize(f,"eng",{logger:m=>{
+   if(m.status==="recognizing text") ocrBtn.textContent="OCR "+Math.round((m.progress||0)*100)+"%";
+  }});
+  const text=out.data.text||"";
+  $("ocrText").value=text.trim()||"No readable text detected.";
+  const conf=Math.round(out.data.confidence||0);
+  $("ocrScore").textContent=conf+"%"; $("ocrBar").style.width=conf+"%";
+  $("t1").textContent="Completed";
+  $("docReport").textContent="OCR completed ("+conf+"% confidence)";
+  const lines=text.split(/\n/).map(x=>x.trim().replace(/\s/g,"<"));
+  const mrz=lines.filter(x=>x.length>=25 && /[A-Z0-9<]{20,}/.test(x));
+  if(mrz.length>=2){
+   $("mrzState").textContent="PATTERN FOUND";$("mrzBar").style.width="85%";
+   $("t2").textContent="Pattern found";$("t2").style.color="#43e0a0";
+  }else{
+   $("mrzState").textContent="NOT FOUND";$("mrzBar").style.width="15%";
+   $("t2").textContent="Not found";
+  }
+  const low=text.toLowerCase();
+  let tamper=50;
+  if(text.length>40)tamper=70;
+  if(/[^\x00-\x7F]/.test(text))tamper-=10;
+  $("tamperState").textContent=tamper>=60?"LOW INDICATOR":"REVIEW";
+  $("tamperBar").style.width=tamper+"%";
+  $("t4").textContent=tamper>=60?"Low indicator":"Review";
+  updateRisk();
+ }catch(e){
+  $("ocrText").value="OCR failed. Check internet connection and try again.";
+ }
+ ocrBtn.disabled=false;ocrBtn.textContent="Run OCR & Analysis";
+});
+
+function updateRisk(){
+ let risk=0;
+ if($("mrzState").textContent==="NOT FOUND")risk+=1;
+ if($("tamperState").textContent==="REVIEW")risk+=1;
+ if($("faceState").textContent==="NOT FOUND")risk+=1;
+ const rv=$("riskValue");
+ if(risk===0){rv.textContent="LOW";rv.className="risk low";$("riskReason").textContent="No demo risk indicators detected."}
+ else if(risk===1){rv.textContent="MEDIUM";rv.className="risk medium";$("riskReason").textContent="One indicator requires human review."}
+ else{rv.textContent="HIGH";rv.className="risk high";$("riskReason").textContent="Multiple demo indicators require human review."}
+}
+
+const video=$("video"),canvas=$("overlay");
+let modelsLoaded=false,detecting=false;
+const MODEL_URL="https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@master/weights";
+
+async function loadModels(){
+ $("cameraResult").textContent="Loading face-detection model...";
+ await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
+ await faceapi.nets.faceLandmark68TinyNet.loadFromUri(MODEL_URL);
+ modelsLoaded=true;
+}
+
+$("cameraBtn").addEventListener("click",async()=>{
+ try{
+  if(!modelsLoaded)await loadModels();
+  const stream=await navigator.mediaDevices.getUserMedia({
+   video:{facingMode:"user",width:{ideal:640},height:{ideal:480}},audio:false
+  });
+  video.srcObject=stream; detecting=true;
+  $("cameraBtn").textContent="Camera Active";$("cameraBtn").disabled=true;
+ }catch(e){
+  $("cameraResult").textContent="Camera unavailable. Allow permission and open the page in a secure browser.";
+ }
+});
+
+video.addEventListener("play",()=>{
+ function resize(){faceapi.matchDimensions(canvas,{width:video.clientWidth,height:video.clientHeight})}
+ resize();window.addEventListener("resize",resize);
+ async function loop(){
+  if(!detecting){requestAnimationFrame(loop);return}
+  const size={width:video.clientWidth,height:video.clientHeight};
+  const d=await faceapi.detectSingleFace(video,new faceapi.TinyFaceDetectorOptions({inputSize:320,scoreThreshold:.5})).withFaceLandmarks(true);
+  const ctx=canvas.getContext("2d");ctx.clearRect(0,0,canvas.width,canvas.height);
+  if(d){
+   const r=faceapi.resizeResults(d,size);
+   faceapi.draw.drawDetections(canvas,r);
+   faceapi.draw.drawFaceLandmarks(canvas,r);
+   const b=r.detection.box,cx=b.x+b.width/2,cy=b.y+b.height/2;
+   const centered=Math.abs(cx-size.width/2)<size.width*.18 && Math.abs(cy-size.height/2)<size.height*.22;
+   const goodSize=b.width>size.width*.18;
+   const score=Math.round(r.detection.score*100);
+   $("faceState").textContent="DETECTED";$("faceState").className="green";
+   $("faceBar").style.width=score+"%";
+   $("position").textContent=centered?"CENTERED":"ADJUST";
+   $("positionBar").style.width=centered?"100%":"45%";
+   $("ready").textContent=centered&&goodSize?"READY":"ADJUST";
+   $("readyBar").style.width=centered&&goodSize?"100%":"50%";
+   $("faceReport").textContent=centered&&goodSize?"Face detected and capture-ready":"Face detected; adjust position";
+   $("t3").textContent="Detected";
+   $("cameraResult").textContent=centered&&goodSize?"Face detected and positioned well for capture.":"Face detected. Center your face and adjust distance.";
+  }else{
+   $("faceState").textContent="NOT FOUND";$("faceState").className="yellow";
+   $("faceBar").style.width="0%";$("position").textContent="—";$("positionBar").style.width="0%";
+   $("ready").textContent="WAITING";$("readyBar").style.width="0%";
+   $("faceReport").textContent="No face detected";$("t3").textContent="Not detected";
+   $("cameraResult").textContent="No face detected. Keep one face visible in the camera.";
+  }
+  updateRisk();requestAnimationFrame(loop);
+ }
+ loop();
+});
+</script>
+</body>
+</html>
